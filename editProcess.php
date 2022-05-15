@@ -1,20 +1,21 @@
 <?php
     include "myconnection.php";
 
-    $id = $_GET["myid"];
-    $name = $_GET["myname"];
-    $address = $_GET["myaddress"];
+    $id = $_POST["myid"];
+    $name = $_POST["myname"];
+    $address = $_POST["myaddress"];
+    $foto = $_POST["foto"];
+    
+    $target_path = "directory/";
 
-    if(isset($_GET['photo'])){
-        $namaFoto = $_FILES['file']['name'];
+    $target_path = $target_path . basename(
+        $_FILES['foto']['name']);
 
-        $path = $_FILES['file']['tmp_name'];
-
-        move_uploaded_file($namaFoto, 'images/'.$path);
-        mysqli_query("INSERT INTO photo VALUES('namaFoto')");
+    if(move_uploaded_file($_FILES['foto']['tmp_name'],$target_path)){
+        $foto = $target_path;
     }
 
-    $query = "UPDATE student SET name='$name', address='$address' WHERE id=$id";
+    $query = "UPDATE student SET name='$name', address='$address', foto='$foto' WHERE id=$id";
 
     if(mysqli_query($connect, $query)){
         header('Location:homeCRUD.php');

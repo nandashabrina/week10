@@ -1,20 +1,20 @@
 <?php
     include "myconnection.php";
 
-    $name = $_GET["myname"];
-    $address = $_GET["myaddress"];
+    $target_path = "directory/";
 
-    $query = "INSERT INTO student(name,address)
-            VALUE('$name', '$address' )";
-    
-    if(isset($_GET['photo'])){
-        $namaFoto = $_FILES['file']['name'];
+    $target_path = $target_path . basename(
+        $_FILES['foto']['name']);
 
-        $path = $_FILES['file']['tmp_name'];
-
-        move_uploaded_file($namaFoto, 'images/'.$path);
-        mysqli_query("INSERT INTO photo VALUES('namaFoto')");
+    if(move_uploaded_file($_FILES['foto']['tmp_name'],$target_path)){
+        $foto = $target_path;
     }
+
+    $name = $_POST["myname"];
+    $address = $_POST["myaddress"];
+
+    $query = "INSERT INTO student(name,address,foto)
+            VALUE('$name', '$address', '$foto')";
 
     if(mysqli_query($connect, $query)){
         echo "Data baru berhasil ditambahkan";

@@ -36,14 +36,10 @@
                         <a href="delete.php?id=<?php echo $row["id"];?>">
                         <button>Hapus</button> </a>
                     </td>
-                    <td>
-                        <img src="<?php echo "directory/".$data['name'] ?>" alt="">
-                    </td>
+                    <td><img src="<?php echo $row["foto"];?>" width=100 height=100></td>
                 </tr>
                 <?php
                     }
-                }else{
-                    echo "0 results";
                 }
                 ?>           
         </table>
