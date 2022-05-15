@@ -14,8 +14,8 @@
                 <th> ID </th>
                 <th> Nama </th>
                 <th> Alamat </th>
-                <th> Aksi </th>
                 <th> Foto </th>
+                <th> AKsi </th>
             </tr>
             <?php
                 include "myconnection.php";
@@ -30,13 +30,13 @@
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["name"]; ?></td>
                     <td><?php echo $row["address"]; ?></td>
+                    <td><img src="<?php echo $row["foto"];?>" width=75 height=100></td>
                     <td>
                         <a href="editForm.php?id=<?php echo $row["id"];?>">
                         <button>Edit</button> </a>
                         <a href="delete.php?id=<?php echo $row["id"];?>">
                         <button>Hapus</button> </a>
                     </td>
-                    <td><img src="<?php echo $row["foto"];?>" width=100 height=100></td>
                 </tr>
                 <?php
                     }
